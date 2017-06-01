@@ -1,34 +1,46 @@
-// Cuando carga la página
-window.addEventListener("load", function () {
-	// Envío de To - Do
-	var toDoForm = document.getElementById("to-do-form");
-	toDoForm.addEventListener("submit", function (e) {
+var contador = 0;
+
+	var cargarPagina = function () {
+		// Envío de To - Do
+		$("#to-do-form").submit(agregarToDo);
+		
+	};
+
+	var agregarToDo = function (e) {
 		e.preventDefault();
-		// Obtenemos datos
-		var contenedor = document.getElementById("posts");
-		var mensajeContenedor = document.getElementById("message");
-		var mensaje = mensajeContenedor.value;
+	
+		var $contenedor = $("#posts");
+		var $mensajeContenedor = $("#message");
+		var $botonAgregar = $("#add-button");
+		var mensaje = $mensajeContenedor.val();
 
 		// Creamos elementos
-		var postContenedor = document.createElement("article");
-		var post = document.createElement("p");
+		var $postContenedor = $("<article />", { "class": "testimonial-section" });
+		var $postCheck = $("<input type='checkbox' />");
+		var $postTexto = $("<label />");
 
-		// Personalizamos elementos
-		postContenedor.className = "testimonial-section";
-		post.textContent = mensaje;
+		var identificador = "marcador-" + contador;
+
+		$postCheck.id = identificador;
+		
+		$postTexto.attr("for", identificador);
+		$postTexto.text(mensaje);
 
 		// Agregarlos al DOM
-		postContenedor.appendChild(post);
+		$postContenedor.append($postCheck);
+		$postContenedor.append($postTexto);
 
 		// Agregarlo a un elemento existente para visualizarlo
-		contenedor.appendChild(postContenedor);
+		// contenedor.appendChild(postContenedor);
+		$contenedor.prepend($postContenedor);
 
 		// Borrar contenido de textarea
-		mensajeContenedor.value = "";
-	});
-});
+		$mensajeContenedor.val("");
+		$botonAgregar.attr("disabled", true);
 
+		// bind, apply, call
 
-
-
-
+		contador++;
+	};
+	// Cuando carga la página
+	$(document).ready(cargarPagina);
