@@ -16,18 +16,19 @@ var contador = 0;
 
 		// Creamos elementos
 		var $postContenedor = $("<article />", { "class": "testimonial-section" });
-		var $postCheck = $("<input type='checkbox' />");
+		//var $postCheck = $("<input type='checkbox' />");
 		var $postTexto = $("<label />");
 
 		var identificador = "marcador-" + contador;
 
-		$postCheck.id = identificador;
+		//$postCheck.id = identificador;
 		
 		$postTexto.attr("for", identificador);
 		$postTexto.text(mensaje);
+	
 
 		// Agregarlos al DOM
-		$postContenedor.append($postCheck);
+		//$postContenedor.append($postCheck);
 		$postContenedor.append($postTexto);
 
 		// Agregarlo a un elemento existente para visualizarlo
@@ -42,5 +43,6 @@ var contador = 0;
 
 		contador++;
 	};
+
 	// Cuando carga la página
 	$(document).ready(cargarPagina);
