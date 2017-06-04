@@ -60,12 +60,26 @@ var contador = 0;
 	$(document).ready(cargarPagina);
 	})();
 	$(function(){
+		var $addButton = $("#add-button");
 		var longitud_max=140;
 		var carcateres_actuales=$("#message").val.length;
 		$(contador).html(longitud_max + " caracteres restantes");
 		$("#message").keyup(function(){
 			var caracteres_nuevos=longitud_max - $("#message").val().length;
 			$("#contador").html(caracteres_nuevos + "caracteres restantes");
-		
+		if (caracteres_nuevos <=20 && caracteres_nuevos >10){
+			$("#contador").css("color","#DBA901");
+		}else if(caracteres_nuevos <=10){
+			$("#contador").css("color","#FF0000");
+
+		}else {
+				$("#contador").css("color","#000000");
+		}
+		if(caracteres_nuevos <= 0){
+			$addButton.attr("disabled", true);
+
+		}
+
+
 		})
 	});
