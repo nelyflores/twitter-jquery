@@ -1,14 +1,16 @@
+(function () {
 var contador = 0;
 
 	var cargarPagina = function () {
 		// Envío de To - Do
 		$("#to-do-form").submit(agregarToDo);
-		
+		$("#message").keyup(validarContenido);
+
 	};
 
 	var agregarToDo = function (e) {
 		e.preventDefault();
-	
+
 		var $contenedor = $("#posts");
 		var $mensajeContenedor = $("#message");
 		var $botonAgregar = $("#add-button");
@@ -22,10 +24,10 @@ var contador = 0;
 		var identificador = "marcador-" + contador;
 
 		//$postCheck.id = identificador;
-		
+
 		$postTexto.attr("for", identificador);
 		$postTexto.text(mensaje);
-	
+
 
 		// Agregarlos al DOM
 		//$postContenedor.append($postCheck);
@@ -43,6 +45,27 @@ var contador = 0;
 
 		contador++;
 	};
+	var validarContenido = function () {
+		var $addButton = $("#add-button");
+		// .trim() solo borra los espacios de sobra a los costados (izquierda y derecha)
+		if($(this).val().trim().length > 0) {
+			$addButton.removeAttr("disabled");
+		} else {
+			$addButton.attr("disabled", true);
+		}
+	};
+
 
 	// Cuando carga la página
 	$(document).ready(cargarPagina);
+	})();
+	$(function(){
+		var longitud_max=140;
+		var carcateres_actuales=$("#message").val.length;
+		$(contador).html(longitud_max + " caracteres restantes");
+		$("#message").keyup(function(){
+			var caracteres_nuevos=longitud_max - $("#message").val().length;
+			$("#contador").html(caracteres_nuevos + "caracteres restantes");
+		
+		})
+	});
