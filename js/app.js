@@ -83,3 +83,19 @@ var contador = 0;
 
 		})
 	});
+
+	$("#message").on("keypress",function(e) {
+    var key = e.keyCode;
+		console.log(key);
+  var textarea = document.getElementById("message");
+
+    if (key == 13) {
+        textarea.rows += 1;
+
+    }
+		if (key == 8){
+	   	 textarea.rows -= 1;
+
+	   }
+
+});
